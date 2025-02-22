@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract StakingPool is Ownable {
     struct Pool {
-        uint256 rewardPercentage; // Reward percentage per second (in wei)
+        uint256 rewardPercentage;
         uint256 totalStaked;
         uint256 createdAt;
     }
@@ -26,7 +26,7 @@ contract StakingPool is Ownable {
     event Staked(address indexed user, uint256 poolId, uint256 amount);
     event Unstaked(address indexed user, uint256 poolId, uint256 amount, uint256 reward);
 
-    constructor(address _stakingToken) {
+    constructor(address _stakingToken, address initialOwner) Ownable(initialOwner) {
         stakingToken = IERC20(_stakingToken);
     }
 
